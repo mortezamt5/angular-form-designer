@@ -1,0 +1,67 @@
+<app-form-builder #api cdkDropListGroup class="flex flex-row p-2 md:p-4 gap-1 md:gap-2">
+  <div class="row">
+    <div class="col-md-1">
+      <app-form-builder-source>
+        <ng-template #input let-it>
+          <div class="form-builder-components" (dblclick)="api.addItem(it.input)">
+            <div class="form-builder-component-item">
+              <i class="{{it.input.dndIcon}}">
+              </i>
+              <span>
+                {{ it.input.dndName }}
+              </span>
+            </div>
+          </div>
+        </ng-template>
+      </app-form-builder-source>
+    </div>
+    <div class="col-md-9">
+      <ng-container *ngIf="api.fields$ | async as fields">
+        <button [disabled]="fields.length < 1" mat-raised-button color="primary" (click)="showPreview(fields)">
+          <i class="bi bi-eyeglasses"></i>
+          Form preview
+        </button>
+      </ng-container>
+      <p></p>
+      <app-form-builder-target (inputAdded)="focusAndSelectedEditableInputText($event)">
+        <ng-template #dragHandle>
+          <i class="bi bi-grip-vertical move-icon"></i>
+        </ng-template>
+
+        <!-- use itemContainerClass input of parent to control item layout -->
+        <ng-template #item let-it>
+          <i class="{{ it.item?.dndIcon }}"></i>
+
+          <editable class="w-full" [id]="[it.item.key] + '-editable'" #editable
+            (modeChange)="editableModeChange($event, it.item)" (save)="
+            api.updateFormLabel(it.item, controlsByKey[it.item.key + ''].value)
+          ">
+            <ng-template viewMode>
+              {{ it.item?.templateOptions?.label || "Unknown" }}
+            </ng-template>
+
+            <ng-template editMode>
+              <input class="w-full form-input h-8 rounded-sm" editableOnEnter (focusout)="editable.saveEdit()"
+                [id]="it.item.key" [formControl]="controlsByKey[it.item.key + '']" />
+            </ng-template>
+          </editable>
+        </ng-template>
+
+        <ng-template #placeholder>
+          <div class="form-builder-target-container">
+            <p>Drop Items Here</p>
+          </div>
+        </ng-template>
+      </app-form-builder-target>
+    </div>
+    <div class="col-md-2">
+      <div class="properties-container">
+        <div class="properties-header">
+          Properties
+        </div>
+        <div class="properties-sidebar">
+        </div>
+      </div>
+    </div>
+  </div>
+</app-form-builder>

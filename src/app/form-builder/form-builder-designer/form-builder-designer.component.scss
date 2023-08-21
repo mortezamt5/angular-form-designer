@@ -1,0 +1,39 @@
+:host{
+  .form-builder-components{
+    display: flex;
+    .form-builder-component-item{
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      background-color: #eee;
+      margin: 5px;
+      min-width: 80px;
+      border-radius: 3px;
+      transition: 0.3s;
+      cursor: move;
+      i{
+        font-size: 1.2em;
+      }
+      span{
+        font-size: 9pt;
+      }
+      &:hover{
+        background-color: #ddd;
+      }
+    }
+  }
+  .properties-container{
+    .properties-header{
+      background-color: #ddd;
+      padding: 5px;
+      border-radius: 3px;
+      text-align: center;
+    }
+    border: 1px solid #ddd;
+    .properties-sidebar{
+      padding: 5px;
+    }
+  }
+}
+
+
