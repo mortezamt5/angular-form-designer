@@ -83,7 +83,7 @@ export const dndFormInputSelect: DnDFormConfig = {
 export const dndFormInputRadio: DnDFormConfig = {
   dndName: 'Radio',
   dndTemp: false,
-  dndIcon: 'bi bi-check-all',
+  dndIcon: 'bi bi-ui-radios-grid',
   type: 'radio',
   templateOptions: {
     label: 'Radio Label',
@@ -95,7 +95,7 @@ export const dndFormInputRadio: DnDFormConfig = {
 export const dndFormInputCheckList: DnDFormConfig = {
   dndName: 'CheckList',
   dndTemp: false,
-  dndIcon: 'bi bi-check-all',
+  dndIcon: 'bi bi-list-check',
   type: 'checkList',
   templateOptions: {
     label: 'Check List Label',
@@ -107,7 +107,7 @@ export const dndFormInputCheckList: DnDFormConfig = {
 export const dndFormInputTagList: DnDFormConfig = {
   dndName: 'TagList',
   dndTemp: false,
-  dndIcon: 'bi bi-check-all',
+  dndIcon: 'bi bi-tags',
   type: 'tagList',
   templateOptions: {
     label: 'Tag List Label',
@@ -119,7 +119,7 @@ export const dndFormInputTagList: DnDFormConfig = {
 
 export const dndFormInputGroup: DnDFormConfig = {
   dndName: 'Group',
-  dndIcon: 'bi bi-card-checklist',
+  dndIcon: 'bi bi-collection',
   dndTemp: false,
   fieldGroup: [],
   templateOptions: {
@@ -164,7 +164,7 @@ export const dndFormInputTextView: DnDFormConfig = {
 
 export const dndFormInputButton: DnDFormConfig = {
   dndName: 'Button',
-  dndIcon: 'bi bi-aspect-ratio-fill',
+  dndIcon: 'bi bi-usb-c',
   dndTemp: false,
   type: 'button',
   defaultValue: false,
