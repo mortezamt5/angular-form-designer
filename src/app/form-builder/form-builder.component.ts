@@ -17,6 +17,10 @@ export class FormBuilderComponent {
     this.service.addItem(config);
   }
 
+  removeItem(config: DnDFormConfig) {
+    this.service.removeItem(config);
+  }
+
   updateFormLabel(config: DnDFormConfig, newLabel: string) {
     this.service.updateFormLabel(config, newLabel);
   }

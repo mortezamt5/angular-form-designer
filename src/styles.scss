@@ -1,4 +1,5 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .cdk-drop-list.list {
   min-height: 100px;
   border: 5px dotted #8585D6 !important;
@@ -11,6 +12,7 @@
   padding: 10px;
   border-radius: 3px;
   margin: 10px;
+  position: relative;
 
   i {
     margin: 0 5px;
@@ -20,23 +22,40 @@
     cursor: move !important;
   }
 
-}
-.form-builder-target-container{
-  border: 5px dotted #8585D6 !important;
-  padding: 50px;
-  text-align: center;
-}
+  i.delete-icon {
+    color: red;
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+  }
 
+}
 
 .cdk-drag-preview {
   @apply bg-white shadow-xl rounded-md;
 }
+
 .cdk-drop-list-dragging .cdk-drag {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
 .cdk-drag-animating {
   transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
 }
+
 .dashed-cdk-drag-placeholder .cdk-drag-placeholder {
   @apply border-indigo-400 border-4 border-dashed box-content;
+}
+
+
+.hidden-placeholder{
+  border: 5px dotted #8585D6 !important;
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px;
+  &::after{
+    content: 'Drop Component Here';
+    font-size: 17pt;
+    color:#8585D6;
+  }
 }

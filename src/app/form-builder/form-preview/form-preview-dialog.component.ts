@@ -5,7 +5,10 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 @Component({
   template: `
     <div class="mat-dialog-container">
-      <div class="mat-dialog-header">Form Preview</div>
+      <div class="mat-dialog-header">
+        <h5>Form Preview</h5>
+        <i class="bi bi-x-square-fill close-icon" (click)="close()"></i>
+      </div>
       <div class="mat-dialog-content">
         <form [formGroup]="form" class="max-height">
           <formly-form
@@ -26,4 +29,7 @@ export class FormPreviewDialogComponent {
 
   form = new UntypedFormGroup({});
   model = {};
+
+
+  close(){}
 }

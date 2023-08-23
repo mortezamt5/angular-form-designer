@@ -4,6 +4,14 @@ width: 70vw;
     padding: 10px;
     background-color: #3F51B5;
     color: #fff;
+    position: relative;
+    i.close-icon{
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      top: 8px;
+      font-size: 1.5em;
+    }
   }
 
   .mat-dialog-content {

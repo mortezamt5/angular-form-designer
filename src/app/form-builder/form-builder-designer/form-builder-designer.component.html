@@ -1,27 +1,42 @@
 <app-form-builder #api cdkDropListGroup class="flex flex-row p-2 md:p-4 gap-1 md:gap-2">
   <div class="row">
     <div class="col-md-1">
-      <app-form-builder-source>
-        <ng-template #input let-it>
-          <div class="form-builder-components" (dblclick)="api.addItem(it.input)">
-            <div class="form-builder-component-item">
-              <i class="{{it.input.dndIcon}}">
-              </i>
-              <span>
-                {{ it.input.dndName }}
-              </span>
+      <div class="toolbar">
+        <span class="title">Components</span>
+      </div>
+      <div class="toolbar-content">
+        <app-form-builder-source>
+          <ng-template #input let-it>
+            <div class="form-builder-components" (dblclick)="api.addItem(it.input)">
+              <div class="form-builder-component-item">
+                <i class="{{it.input.dndIcon}}">
+                </i>
+                <span>
+                  {{ it.input.dndName }}
+                </span>
+              </div>
             </div>
-          </div>
-        </ng-template>
-      </app-form-builder-source>
+          </ng-template>
+        </app-form-builder-source>
+      </div>
     </div>
     <div class="col-md-9">
-      <ng-container *ngIf="api.fields$ | async as fields">
-        <button [disabled]="fields.length < 1" mat-raised-button color="primary" (click)="showPreview(fields)">
-          <i class="bi bi-eyeglasses"></i>
-          Form preview
-        </button>
-      </ng-container>
+      <div class="toolbar">
+        <ng-container *ngIf="api.fields$ | async as fields">
+          <i class="bi bi-three-dots-vertical setting-icon" [matMenuTriggerFor]="saveAsMenu"></i>
+          <button [disabled]="fields.length < 1" mat-raised-button color="primary" (click)="showPreview(fields)">
+            <i class="bi bi-eyeglasses"></i>
+            Form preview
+          </button>
+          <button [disabled]="fields.length < 1" mat-raised-button [matMenuTriggerFor]="saveAsMenu">Save as <i
+              class="bi bi-chevron-bar-down"></i></button>
+          <mat-menu #saveAsMenu="matMenu">
+            <button mat-menu-item><i class="bi bi-filetype-json"></i> Json Bpmn Format</button>
+            <button mat-menu-item><i class="bi bi-filetype-tsx"></i> Angular Component Format</button>
+            <button mat-menu-item><i class="bi bi-filetype-xml"></i> XML Bpmn Format</button>
+          </mat-menu>
+        </ng-container>
+      </div>
       <p></p>
       <app-form-builder-target (inputAdded)="focusAndSelectedEditableInputText($event)">
         <ng-template #dragHandle>
@@ -45,23 +60,24 @@
                 [id]="it.item.key" [formControl]="controlsByKey[it.item.key + '']" />
             </ng-template>
           </editable>
+          <i class="bi bi-trash delete-icon" (click)="api.removeItem(it.item)"></i>
         </ng-template>
 
         <ng-template #placeholder>
-          <div class="form-builder-target-container">
-            <p>Drop Items Here</p>
-          </div>
+          <!-- <div class="form-builder-target-container">
+            <h4 class="drop-title">Drop Components Here</h4>
+          </div> -->
         </ng-template>
       </app-form-builder-target>
     </div>
     <div class="col-md-2">
-      <div class="properties-container">
-        <div class="properties-header">
-          Properties
-        </div>
+      <div class="toolbar">
+        <span class="title">Properties</span>
+      </div>
+      <div class="toolbar-content">
         <div class="properties-sidebar">
         </div>
-      </div>
+    </div>
     </div>
   </div>
 </app-form-builder>

@@ -79,7 +79,12 @@ import { DnDFormConfig } from './type';
   styles: [':host {display: block;}'],
 })
 export class FormBuilderTargetComponent {
-  constructor(public service: FormBuilderService) {}
+  constructor(public service: FormBuilderService) {
+    service.fields$.subscribe(result=>{
+      console.log('fields' , result);
+
+    })
+  }
 
   @ContentChild('item') itemRef?: TemplateRef<any>;
   @ContentChild('placeholder') placeholderRef?: TemplateRef<any>;

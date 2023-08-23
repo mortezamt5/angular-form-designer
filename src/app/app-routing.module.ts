@@ -9,13 +9,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'form-designer',
-    loadChildren: () =>
-      import('./form-designer/form-designer.module').then(
-        (m) => m.FormDesignerModule
-      ),
-  },
-  {
     path: 'form-builder',
     loadChildren: () =>
       import('./form-builder/form-builder.module').then(

@@ -1,39 +1,70 @@
-:host{
-  .form-builder-components{
+:host {
+  .form-builder-components {
     display: flex;
-    .form-builder-component-item{
+
+    .form-builder-component-item {
       display: flex;
-      flex-direction: column-reverse;
-      align-items: center;
       background-color: #eee;
       margin: 5px;
-      min-width: 70px;
+      width: 100%;
       border-radius: 3px;
       transition: 0.3s;
       cursor: move;
-      i{
+
+      i {
         font-size: 1.4em;
+        margin: 0 10px;
       }
-      span{
+
+      span {
         font-size: 9pt;
+        position: relative;
+        top: 8px;
       }
-      &:hover{
+
+      &:hover {
         background-color: #ddd;
       }
     }
   }
-  .properties-container{
-    .properties-header{
-      background-color: #ddd;
-      padding: 5px;
-      border-radius: 3px;
-      text-align: center;
+
+  .properties-sidebar {
+    padding: 5px;
+    min-height: 500px;
+  }
+
+
+  .toolbar {
+    background-color: #eee;
+    border-radius: 5px 5px 0 0;
+    min-height: 50px;
+
+    .title {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: 8px;
     }
-    border: 1px solid #ddd;
-    .properties-sidebar{
-      padding: 5px;
+
+    button {
+      margin: 5px;
+    }
+  }
+
+  .toolbar-content {
+    border: 1px solid #eee;
+  }
+  .setting-icon{
+    margin: 0 15px 0 10px;
+    cursor: pointer;
+    position: relative;
+    top: 3px;
+    font-size: 15px;
+    color: #3a3a3a;
+    transition: 0.3s;
+    &:hover{
+      font-weight: bold;
+      color: #000;
     }
   }
 }
-
-

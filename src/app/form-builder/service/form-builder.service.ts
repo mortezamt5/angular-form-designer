@@ -46,6 +46,14 @@ export class FormBuilderService {
     this.setFields();
   }
 
+  removeItem(config: DnDFormConfig) {
+    const index = this.dropInputs.indexOf(config);
+    if(index > -1){
+        this.dropInputs.splice(index, 1);
+    }
+    this.setFields();
+  }
+
   updateFormLabel(config: DnDFormConfig, label: string) {
     this.dropInputs = this.dropInputs.map((item) => {
       if (item.key === config.key) {

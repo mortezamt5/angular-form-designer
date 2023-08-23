@@ -29,6 +29,7 @@ import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { FormPreviewDialogComponent } from './form-preview/form-preview-dialog.component';
 import { FormBuilderService } from './service/form-builder.service';
 import { FormPreviewService } from './service/form-preview.service';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     FormBuilderComponent,
@@ -57,6 +58,7 @@ import { FormPreviewService } from './service/form-preview.service';
     FormlyMaterialModule,
     FormlyMatDatepickerModule,
     MatDialogModule,
+    MatMenuModule
   ],
   providers: [FormBuilderService , FormPreviewService]
 })
