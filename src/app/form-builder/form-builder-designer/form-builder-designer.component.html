@@ -31,14 +31,20 @@
           <button [disabled]="fields.length < 1" mat-raised-button [matMenuTriggerFor]="saveAsMenu">Save as <i
               class="bi bi-chevron-bar-down"></i></button>
           <mat-menu #saveAsMenu="matMenu">
-            <button mat-menu-item><i class="bi bi-filetype-json"></i> Json Bpmn Format</button>
-            <button mat-menu-item><i class="bi bi-filetype-tsx"></i> Angular Component Format</button>
-            <button mat-menu-item><i class="bi bi-filetype-xml"></i> XML Bpmn Format</button>
+            <button mat-menu-item><i class="bi bi-ui-checks"></i> Form Preview Options</button>
+            <mat-divider></mat-divider>
+            <button (click)="saveAsJson()" mat-menu-item [disabled]="fields.length < 1"><i class="bi bi-filetype-json"></i> Json Bpmn
+              Format</button>
+            <button mat-menu-item [disabled]="fields.length < 1"><i class="bi bi-filetype-tsx"></i> Angular Component
+              Format</button>
+            <button mat-menu-item [disabled]="fields.length < 1"><i class="bi bi-filetype-xml"></i> XML Bpmn
+              Format</button>
           </mat-menu>
         </ng-container>
       </div>
       <p></p>
-      <app-form-builder-target (inputAdded)="focusAndSelectedEditableInputText($event)">
+      <app-form-builder-target (select)="componentSettingHandler($event)"
+        (inputAdded)="focusAndSelectedEditableInputText($event)">
         <ng-template #dragHandle>
           <i class="bi bi-grip-vertical move-icon"></i>
         </ng-template>
@@ -60,6 +66,7 @@
                 [id]="it.item.key" [formControl]="controlsByKey[it.item.key + '']" />
             </ng-template>
           </editable>
+          <!-- <i class="bi bi-gear component-setting-icon" (click)="componentSettingHandler(it.item , $event)"></i> -->
           <i class="bi bi-trash delete-icon" (click)="api.removeItem(it.item)"></i>
         </ng-template>
 
@@ -75,9 +82,53 @@
         <span class="title">Properties</span>
       </div>
       <div class="toolbar-content">
-        <div class="properties-sidebar">
+        <div class="properties-sidebar" *ngIf="showComponentSetting">
+          <form #form="ngForm" (submit)="handlePropertiesSave()">
+          <div class="row">
+            <mat-form-field matListItemTitle class="example-full-width">
+              <mat-label>Type <i style="margin-right: 5px;"
+                  class="{{currentComponent.formComponent.dndIcon}}"></i></mat-label>
+              <input matInput disabled [(ngModel)]="currentComponent.formComponent.dndName" name="dndName">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field matListItemTitle class="example-full-width">
+              <mat-label>Label </mat-label>
+              <input matInput [(ngModel)]="currentComponent.formComponent.templateOptions!.label" name="label">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field matListItemTitle class="example-full-width">
+              <input matInput type="text" style="display: none;">
+              <mat-checkbox [(ngModel)]="currentComponent.formComponent.templateOptions!.required" name="required"
+              color="primary">Is
+                Required</mat-checkbox>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field matListItemTitle class="example-full-width">
+              <mat-label>Position.Row</mat-label>
+              <input matInput [(ngModel)]="currentComponent.formComponent.templateOptions!.rows" name="rows"
+               type="number"
+                placeholder="Enter valid number">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field matListItemTitle class="example-full-width">
+              <mat-label>Position.Column</mat-label>
+              <input matInput [(ngModel)]="currentComponent.formComponent.templateOptions!.cols" name="cols"
+               type="number"
+                placeholder="Enter valid number">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <button mat-raised-button color="primary">Save</button>
+            </div>
+          </div>
+        </form>
         </div>
-    </div>
+      </div>
     </div>
   </div>
 </app-form-builder>

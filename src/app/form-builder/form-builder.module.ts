@@ -2,7 +2,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule} from '@angular/common';
 import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilderDesignerComponent } from './form-builder-designer/form-builder-designer.component';
 import { FormBuilderRoutingModule } from './form-builder-routing.module';
 import { FormBuilderSourceComponent } from './form-builder-source.component';
@@ -30,6 +30,8 @@ import { FormPreviewDialogComponent } from './form-preview/form-preview-dialog.c
 import { FormBuilderService } from './service/form-builder.service';
 import { FormPreviewService } from './service/form-preview.service';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     FormBuilderComponent,
@@ -40,6 +42,7 @@ import { MatMenuModule } from '@angular/material/menu';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     FormBuilderRoutingModule,
     MatSnackBarModule,
@@ -58,7 +61,10 @@ import { MatMenuModule } from '@angular/material/menu';
     FormlyMaterialModule,
     FormlyMatDatepickerModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatInputModule,
+    MatCheckboxModule
+
   ],
   providers: [FormBuilderService , FormPreviewService]
 })

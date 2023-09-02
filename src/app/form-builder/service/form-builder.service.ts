@@ -37,6 +37,12 @@ export class FormBuilderService {
     }
   }
 
+  getAllFields(): Promise<DnDFormConfig[]>{
+    return new Promise<DnDFormConfig[]>((resolve ,reject)=>{
+      resolve(this.dropInputs);
+    })
+  }
+
   setFields(config: DnDFormConfig[] = this.dropInputs) {
     this._fields$.next(JSON.parse(JSON.stringify(config)));
   }
@@ -68,6 +74,31 @@ export class FormBuilderService {
     this.setFields();
   }
 
+
+  updateFormSelectedAll(selected: boolean) {
+    this.dropInputs = this.dropInputs.map((item) => {
+        return {
+          ...item,
+          selected,
+        };
+    });
+    this.setFields();
+  }
+
+  updateFormSelected(config: DnDFormConfig, selected: boolean) {
+    this.dropInputs = this.dropInputs.map((item) => {
+      if (item.key === config.key) {
+        return {
+          ...item,
+          selected,
+        };
+      } else {
+        return item;
+      }
+    });
+    this.setFields();
+  }
+
   cleanupTemporaryInputTypes() {
     this.copyFromInputs = this.copyFromInputs.filter((it) => !it.dndTemp);
   }
@@ -80,4 +111,5 @@ export class FormBuilderService {
       dndTemp: true,
     });
   }
+
 }

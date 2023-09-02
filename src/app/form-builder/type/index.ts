@@ -1,6 +1,5 @@
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
-
 export type DndInputType =
   | 'Text'
   | 'Number'
@@ -16,11 +15,18 @@ export type DndInputType =
   | 'Checkbox'
   | 'Group';
 
+export type DnDComponentConfig =  {
+  formComponent: DnDFormConfig;
+  positionRow: number;
+  positionColumn: number;
+};
+
 export type DnDFormConfig = FormlyFieldConfig & {
   dndName: DndInputType;
   dndIcon: string;
   dndTemp: boolean;
   fieldGroup?: DnDFormConfig[];
+  selected?:boolean;
 };
 
 export const dndFormInputText: DnDFormConfig = {
@@ -116,7 +122,6 @@ export const dndFormInputTagList: DnDFormConfig = {
   },
 };
 
-
 export const dndFormInputGroup: DnDFormConfig = {
   dndName: 'Group',
   dndIcon: 'bi bi-collection',
@@ -164,7 +169,7 @@ export const dndFormInputTextView: DnDFormConfig = {
 
 export const dndFormInputButton: DnDFormConfig = {
   dndName: 'Button',
-  dndIcon: 'bi bi-usb-c',
+  dndIcon: 'bi bi-aspect-ratio-fill',
   dndTemp: false,
   type: 'button',
   defaultValue: false,
@@ -186,6 +191,6 @@ export const DndFormInputs: DnDFormConfig[] = [
   dndFormInputTagList,
   dndFormInputImageView,
   dndFormInputTextView,
-  dndFormInputButton
+  dndFormInputButton,
   // dndFormInputGroup,
 ];

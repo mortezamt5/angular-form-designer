@@ -1,12 +1,5 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import {
-  Component,
-  ContentChild,
-  EventEmitter,
-  Input,
-  Output,
-  TemplateRef,
-} from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 
 import { FormBuilderService } from './service/form-builder.service';
 import { DnDFormConfig } from './type';
@@ -36,7 +29,10 @@ import { DnDFormConfig } from './type';
         [cdkDragData]="item"
         [class]="itemContainerClass"
       >
-        <div class="form-builder-target-item">
+        <div
+          class="form-builder-target-item {{ item.selected ? 'selected' : '' }}"
+          (click)="handleSelect(item, $event)"
+        >
           <!--
           cdkDragHandle must be a direct descendant of the cdkDrag item.
           E.g. we can't do this:
@@ -79,12 +75,7 @@ import { DnDFormConfig } from './type';
   styles: [':host {display: block;}'],
 })
 export class FormBuilderTargetComponent {
-  constructor(public service: FormBuilderService) {
-    service.fields$.subscribe(result=>{
-      console.log('fields' , result);
-
-    })
-  }
+  constructor(public service: FormBuilderService) {}
 
   @ContentChild('item') itemRef?: TemplateRef<any>;
   @ContentChild('placeholder') placeholderRef?: TemplateRef<any>;
@@ -94,6 +85,7 @@ export class FormBuilderTargetComponent {
   @Input() itemContainerClass: string = '';
 
   @Output() inputAdded = new EventEmitter<DnDFormConfig>();
+  @Output() select = new EventEmitter<any>();
 
   _mouserOverItemIndex = -1;
   _forcePreviewIconContainerHidden = false;
@@ -101,5 +93,11 @@ export class FormBuilderTargetComponent {
   drop(event: CdkDragDrop<DnDFormConfig[]>): void {
     const item = this.service.handleDropEvent(event);
     if (item) this.inputAdded.next(item);
+  }
+
+  handleSelect(config: DnDFormConfig, event: any) {
+    console.log(config , event);
+
+    if (config) this.select.next(config);
   }
 }

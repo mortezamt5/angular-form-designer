@@ -13,6 +13,7 @@
   border-radius: 3px;
   margin: 10px;
   position: relative;
+  border:2px solid #eee;
 
   i {
     margin: 0 5px;
@@ -27,6 +28,22 @@
     position: absolute;
     right: 5px;
     cursor: pointer;
+  }
+
+  i.component-setting-icon {
+    color: #3a3a3a;
+    position: absolute;
+    right: 30px;
+    cursor: pointer;
+  }
+
+  &.selected{
+    border: 2px solid #7272D0;
+  }
+
+  &:hover{
+    border-color:#8585D6;
+    transition: 0.3s;
   }
 
 }
@@ -57,5 +74,13 @@
     content: 'Drop Component Here';
     font-size: 17pt;
     color:#8585D6;
+  }
+  &.cdk-drop-list-dragging{
+    border-color: #E28C96 !important;
+    &::after{
+      content: '';
+      font-size: 17pt;
+      color:#8585D6;
+    }
   }
 }
